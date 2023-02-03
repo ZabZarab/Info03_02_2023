@@ -41,6 +41,13 @@ public class MainController {
      */
     public String searchList(String name){
         String output = "Nicht gefunden.";
+        allPersons.toFirst();
+        while (allPersons.hasAccess()){
+            if(name == allPersons.getContent().getName()){
+                output = output + allPersons.getContent().getName()+" ("+allPersons.getContent().getBirthdate()+"), ";
+            }
+            allPersons.next();
+        }
         //TODO 01: Schreibe einen Suchalgorithmus
         return output;
     }
@@ -51,6 +58,20 @@ public class MainController {
      */
     public void sortList(){
         //TODO 02: Schreibe einen Sortieralgorithmus
+        List<Person> helpList = new List<>();
+        while (!allPersons.isEmpty()){
+            allPersons.toFirst();
+            Person tmp = allPersons.getContent();
+            allPersons.next();
+
+            while(allPersons.hasAccess()){
+                if(tmp.getName().compareTo(allPersons.getContent().getName()) > 0){
+                    tmp = allPersons.getContent();
+                }
+            }
+
+        }
+
     }
 
 
